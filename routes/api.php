@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::post('/verify', [\App\Http\Controllers\VerificationController::class, 'verify'])->name('verify');
+    Route::post('/verify', [VerificationController::class, 'verify'])->name('verify');
 });
