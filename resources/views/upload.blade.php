@@ -65,6 +65,7 @@
     dropArea.addEventListener('drop', handleDrop, false);
 
     function handleDrop(e) {
+        e.preventDefault();
         let dt = e.dataTransfer;
         let files = dt.files;
 
@@ -72,8 +73,17 @@
     }
 
     function handleFiles(files) {
-        fileInput.files = files;
-        uploadFile();
+        // fileInput.files = files;
+        // uploadFile();
+        const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+        if (files.length > 0) {
+            if (files[0].size > maxSize) {
+                alert('File size exceeds 2MB. Please select a smaller file.');
+                return;
+            }
+            fileInput.files = files;
+            uploadFile();
+        }
     }
 
     fileInput.addEventListener('change', function() {
