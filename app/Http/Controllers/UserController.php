@@ -20,7 +20,7 @@ class UserController extends Controller
 
             session(['token' => $token]);
 
-            return redirect()->route('upload')->with('token', $token);
+            return redirect()->route('upload');
         }
         catch (\Throwable $th) {
             //throw $th;
