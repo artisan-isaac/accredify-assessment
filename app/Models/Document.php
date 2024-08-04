@@ -21,7 +21,7 @@ class Document extends Model
         'result' => 'string'
     ];
 
-    protected $allowedType = [
+    const allowedType = [
         'application/json'
     ];
 }

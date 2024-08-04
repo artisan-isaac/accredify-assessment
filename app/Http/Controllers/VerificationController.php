@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Http\Resources\DocumentResource;
+use App\Livewire\Forms\LoginForm;
 use App\Models\Document;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -34,9 +35,8 @@ class VerificationController extends Controller
 
         $fileType = $file->getClientMimeType();
 
-        $user = PersonalAccessToken::findToken(session('token'));
+        $allowedTypes = Document::allowedType;
 
-        $allowedTypes = ['application/json'];
         if (!in_array($fileType, $allowedTypes)) {
             return new JsonResource(['error' => 'Invalid file type. Only supports JSON for now.']);
         }
@@ -58,7 +58,6 @@ class VerificationController extends Controller
         }
 
         if ($errors) {
-            // return new JsonResponse(null, Response::HTTP_NO_CONTENT);
             $jsonContent['result'] = $errors;
         }
         else {
@@ -114,8 +113,6 @@ class VerificationController extends Controller
         $hashes = [];
 
         foreach ($this->flattenArray($data) as $key => $value) {
-            // $hashes[] = hash('sha256', json_encode([$key => $value], JSON_UNESCAPED_SLASHES));
-
             $hash = hash('sha256', json_encode([$key => $value], JSON_UNESCAPED_SLASHES));
             $hashes[] = $hash;
         }
