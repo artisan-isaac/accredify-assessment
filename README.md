@@ -65,7 +65,7 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    user || --o{file_verification_results: "has many"
+    user || --o{uploaded_file: "has many"
 ```
 
 ## Flowchart
