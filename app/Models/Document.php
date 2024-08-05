@@ -21,7 +21,7 @@ class Document extends Model
         'result' => 'string'
     ];
 
-    const allowedType = [
+    const ALLOWED_TYPE = [
         'application/json'
     ];
 }

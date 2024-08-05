@@ -14,9 +14,11 @@ class DocumentResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            "issuer" => $this['data']['issuer']['name'],
-            "result" => $this['result'],
-        ];
+        return array(
+            'data' => [
+                "issuer" => $this['data']['issuer']['name'],
+                "result" => $this['result'],
+            ]
+        );
     }
 }

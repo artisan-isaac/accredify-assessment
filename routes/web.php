@@ -23,5 +23,15 @@ Route::get('/login', function () {
 
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
 
-Route::get('/upload', [\App\Http\Controllers\VerificationController::class, 'upload'])->name('upload');
+Route::get('/upload', function () {
+    $token = session('token');
+
+    if (!$token) {
+        return redirect()->route('login');
+    }
+
+    return view('upload', [
+        'token' => session('token')]
+    );
+})->name('upload');
 

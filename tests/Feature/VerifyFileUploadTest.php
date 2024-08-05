@@ -26,9 +26,14 @@ class VerifyFileUploadTest extends TestCase
             'file' => UploadedFile::fake()->create('document.txt', 100, 'text/plain'),
         ]);
 
-        $response->assertStatus(200)
+        $response->assertStatus(422)
             ->assertJson([
-                'data' => ['error' => 'Invalid file type. Only supports JSON for now.']
+                "message" => "The file field must be a file of type: json.",
+                "errors" => [
+                    "file" => [
+                        "The file field must be a file of type: json."
+                    ]
+                ]
             ]);
     }
 
