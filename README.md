@@ -8,25 +8,25 @@
 
 ## Installation
 1. **Clone the repository:**
-    ```bash
+    ```sh
     git clone https://github.com/artisan-isaac/accredify-assessment.git
     cd accredify-assessment
     ```
 
 2. **Install dependencies:**
-    ```bash
+    ```sh
     composer install
     ```
 
 3. **Setup environment variables:**
     Copy the `.env.example` to `.env` and configure your database and other environment variables.
-    ```bash
+    ```sh
     cp .env.example .env
     php artisan key:generate
     ```
 
 4. **Run migrations:**
-    ```bash
+    ```sh
     php artisan migrate --seed
     ```
     The seeding will provide user record with the credentials like below
@@ -34,7 +34,7 @@
     password = 123123123
 
 5. **Serve the application:**
-    ```bash
+    ```sh
     php artisan serve
     ```
 
